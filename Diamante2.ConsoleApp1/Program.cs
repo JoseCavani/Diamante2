@@ -29,11 +29,11 @@ namespace Diamante.ConsoleApp1
 
       
             #region     Parte de cima e meio
-            for (int linhas = 0; linhas <= numeroParaLinhas ; linhas++) // rodar as ate que chege no numero maximo de linhas
+            for (int linhas = 0; linhas <= numeroParaLinhas ; linhas++) // rodar as linhas ate que chege no numero maximo de linhas
                 {
                     for (int colunas = -(numeroParaLinhas+1)/2; colunas <= numeroParaLinhas + linhas; colunas++)// fazer colunas
     // essa logica determine onde iniciar as colunas 
-    // tem que ser inicializado de acordo com o valor minimo de todas as linhas senão dara errado depois
+    // tem que ser inicializado de acordo com o valor minimo maior senão dara errado depois
     //o numero inicilizado é  (-numeroParaLinhas ((0 a 25) + 1)/2) 
     //eu descobri isso fazendo as contas com o valor z (colunas == ((numeroParaLinhas)/2) - linhas) e descobri essa formula, note que ele fica negativo
                     {
@@ -60,7 +60,7 @@ namespace Diamante.ConsoleApp1
             {
                 for (int colunas = -(numeroParaLinhas + 1)/2; colunas <= numeroParaLinhas+(numeroParaLinhas - linhas); colunas++)
                 // na parte de baixo muda a logica de ate onde as colunas vão
-                //aqui tem se que o maior maximo (descoberto por testes com a letra Z) e: numeroParaLinhas+(numeroParaLinhas - i - 1)
+                //aqui tem se que o maior numero maximo de colunas (descoberto por testes com a letra Z) e: numeroParaLinhas+(numeroParaLinhas - i)
                 {
                     if (colunas > ((numeroParaLinhas) / 2) + (numeroParaLinhas - linhas))
                         break; // logica para evitar escrever mais espaçoes do que necessario
