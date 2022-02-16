@@ -25,21 +25,11 @@ namespace Diamante.ConsoleApp1
 
             #endregion
 
-            Console.WriteLine();
 
-            #region gambiarra para arrumar a primeira linha
-            for (int colunas = -(numeroParaLinhas + 1) / 2; colunas <= numeroParaLinhas/2; colunas++)// fazer colunas
-            {
-                if (colunas == numeroParaLinhas / 2)
-                Console.Write($"{(char)(65)}");
-                else
-                    Console.Write(" ");
-            }
-            Console.WriteLine();
-            #endregion
 
+      
             #region     Parte de cima e meio
-            for (int linhas = 1; linhas <= numeroParaLinhas ; linhas++) // rodar as ate que chege no numero maximo de linhas
+            for (int linhas = 0; linhas <= numeroParaLinhas ; linhas++) // rodar as ate que chege no numero maximo de linhas
                 {
                     for (int colunas = -(numeroParaLinhas+1)/2; colunas <= numeroParaLinhas + linhas; colunas++)// fazer colunas
     // essa logica determine onde iniciar as colunas 
@@ -49,11 +39,13 @@ namespace Diamante.ConsoleApp1
                     {
                     if (colunas > ((numeroParaLinhas) / 2) + linhas)
                         break;// logica para evitar escrever mais espaçoes do que necessario
-                    if (colunas == ((numeroParaLinhas) / 2) - linhas || colunas == ((numeroParaLinhas) / 2) -1  + linhas  )
+                    if (colunas == ((numeroParaLinhas) / 2) - linhas || colunas == ((numeroParaLinhas) / 2)   + linhas  )
                     //valores minimos || e maxmio da cada linha
                     {
                         Console.Write($"{(char)(65 + linhas)}");// descobrir a letra e imprimir
+                    
                     }
+                    else
                         Console.Write(" ");
                     
                     }
@@ -64,7 +56,7 @@ namespace Diamante.ConsoleApp1
 
 
             #region Parte de baixo
-            for (int linhas = 1; linhas < numeroParaLinhas; linhas++)
+            for (int linhas = 1; linhas <= numeroParaLinhas; linhas++)
             {
                 for (int colunas = -(numeroParaLinhas + 1)/2; colunas <= numeroParaLinhas+(numeroParaLinhas - linhas); colunas++)
                 // na parte de baixo muda a logica de ate onde as colunas vão
@@ -72,12 +64,13 @@ namespace Diamante.ConsoleApp1
                 {
                     if (colunas > ((numeroParaLinhas) / 2) + (numeroParaLinhas - linhas))
                         break; // logica para evitar escrever mais espaçoes do que necessario
-                    if (colunas == ((numeroParaLinhas) / 2) - (numeroParaLinhas - linhas) || colunas == ((numeroParaLinhas) / 2) + (numeroParaLinhas - linhas - 1))
+                    if (colunas == ((numeroParaLinhas) / 2) - (numeroParaLinhas - linhas) || colunas == ((numeroParaLinhas) / 2) + (numeroParaLinhas - linhas ))
                     // logica para descobrir o minimo e maximo de cada linha
                     {
                         Console.Write($"{(char)(numeroParaALetra - linhas)}"); // descobrir a letra e imprimr
+
                     }
-                   
+                   else
                         Console.Write(" ");
 
                    
@@ -85,15 +78,7 @@ namespace Diamante.ConsoleApp1
                 Console.WriteLine();
             }
             #endregion
-            #region gambiarra para arrumar ultima linha
-            for (int colunas = -(numeroParaLinhas + 1) / 2; colunas <= numeroParaLinhas/2; colunas++)// fazer colunas
-            {
-                if (colunas == numeroParaLinhas / 2)
-                    Console.Write($"{(char)(65)}");
-                else
-                    Console.Write(" ");
-            }
-            #endregion
+         
             Console.ReadKey();
           
         }
