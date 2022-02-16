@@ -1,44 +1,66 @@
 ﻿using System;
-
+using System.Text.RegularExpressions;
 namespace Diamante.ConsoleApp1
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            volta:
+        #region Verificar o que foi digitado
+        volta:
             Console.WriteLine("digite uma letra");
-           char letra = char.Parse(Console.ReadLine().ToUpper());
-            int numeroParaALetra = (int)letra;
+            string stringDigitado = Console.ReadLine().ToUpper();
+            if (!(char.TryParse(stringDigitado, out char letra)&& Regex.IsMatch(stringDigitado, @"^[a-zA-Z]+$")))
+            {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("invalido");
+                Console.ReadKey();
+                Console.ResetColor();
+                goto volta;
+            }
+            int numeroParaALetra = (int)letra; // numero de 65 - 90 ASCII
 
-            int numeroParaLinhas = numeroParaALetra - 65; //69-65 = 5
-          
-         
-                              
-                for (int i = 0; i <= numeroParaLinhas ; i++)
+            int numeroParaLinhas = numeroParaALetra - 65; //numero de 0 a 25 para as letras do alfabeto
+
+            #endregion
+
+
+            #region     Parte de cima e meio
+            for (int linhas = 0; linhas <= numeroParaLinhas ; linhas++) // rodar as ate que chege no numero maximo de linhas
                 {
-                    for (int z = -(numeroParaLinhas+1)/2; z <= numeroParaLinhas + i; z++)
-                    {         
-
-                        if (z == ((numeroParaLinhas)/2) - i || z == ((numeroParaLinhas)/2) + i)
+                    for (int colunas = -(numeroParaLinhas+1)/2; colunas <= numeroParaLinhas + linhas; colunas++)// fazer colunas
+    // essa logica determine onde iniciar as colunas 
+    // tem que ser inicializado de acordo com o valor minimo de todas as linhas senão dara errado depois
+    //o numero inicilizado é  (-numeroParaLinhas ((0 a 25) + 1)/2) 
+    //eu descobri isso fazendo as contas com o valor z (colunas == ((numeroParaLinhas)/2) - linhas) e descobri essa formula, note que ele fica negativo
+                    {
+                    if (colunas > ((numeroParaLinhas) / 2) + linhas)
+                        break;// logica para evitar escrever mais espaçoes do que necessario
+                    if (colunas == ((numeroParaLinhas)/2) - linhas || colunas == ((numeroParaLinhas)/2) + linhas)
+                       //valores minimos || e maxmio da cada linha
                         {
-                            Console.Write($"{(char) (65+i)}");
+                            Console.Write($"{(char) (65+linhas)}");// descobrir a letra e imprimir
                         }
-                   
                     else
-                            Console.Write(" ");
+                        Console.Write(" ");
                     }
                     Console.WriteLine();
                 }
-
+            #endregion
+            #region Parte de baixo
             for (int i = 1; i <= numeroParaLinhas; i++)
             {
                 for (int z = -(numeroParaLinhas + 1)/2; z <= numeroParaLinhas+(numeroParaLinhas - i); z++)
+                // na parte de baixo muda a logica de ate onde as colunas vão
+                //aqui tem se que o maior maximo (descoberto por testes com a letra Z) e: numeroParaLinhas+(numeroParaLinhas - i)
                 {
-
+                    if (z > ((numeroParaLinhas) / 2) + (numeroParaLinhas - i))
+                        break; // logica para evitar escrever mais espaçoes do que necessario
                     if (z == ((numeroParaLinhas) / 2) - (numeroParaLinhas-i) || z == ((numeroParaLinhas) / 2) + (numeroParaLinhas-i))
+                   // logica para descobrir o minimo e maximo de cada linha
                     {
-                        Console.Write($"{(char)(numeroParaALetra - i)}");
+                        Console.Write($"{(char)(numeroParaALetra - i)}"); // descobrir a letra e imprimr
                     }
 
                     else
@@ -46,22 +68,7 @@ namespace Diamante.ConsoleApp1
                 }
                 Console.WriteLine();
             }
-
-
-            //for (int i = ((numeroParaLinhas - 1) / 2); i <= numeroParaLinhas; i++)
-            //{
-            //    for (int z = 0; z < numeroParaLinhas; z++)
-            //    {                       //((5-1)/2) 2 + (5-3) 2 = 4    
-            //        if (z == ((numeroParaLinhas - 1) / 2) - (numeroParaLinhas - i) || z == ((numeroParaLinhas - 1) / 2) + (numeroParaLinhas - i))
-            //        {
-            //        Console.Write($"{(char)(65 + i)}");
-            //    }
-
-            //    else
-            //            Console.Write(" ");
-            //    }
-            //    Console.WriteLine();
-            //}
+            #endregion
             Console.ReadKey();
           
         }
