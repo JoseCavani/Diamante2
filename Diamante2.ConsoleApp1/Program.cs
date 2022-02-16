@@ -25,9 +25,21 @@ namespace Diamante.ConsoleApp1
 
             #endregion
 
+            Console.WriteLine();
+
+            #region gambiarra para arrumar a primeira linha
+            for (int colunas = -(numeroParaLinhas + 1) / 2; colunas <= numeroParaLinhas; colunas++)// fazer colunas
+            {
+                if (colunas == numeroParaLinhas / 2)
+                Console.Write($"{(char)(65)}");
+                else
+                    Console.Write(" ");
+            }
+            Console.WriteLine();
+            #endregion
 
             #region     Parte de cima e meio
-            for (int linhas = 0; linhas <= numeroParaLinhas ; linhas++) // rodar as ate que chege no numero maximo de linhas
+            for (int linhas = 1; linhas <= numeroParaLinhas ; linhas++) // rodar as ate que chege no numero maximo de linhas
                 {
                     for (int colunas = -(numeroParaLinhas+1)/2; colunas <= numeroParaLinhas + linhas; colunas++)// fazer colunas
     // essa logica determine onde iniciar as colunas 
@@ -37,34 +49,50 @@ namespace Diamante.ConsoleApp1
                     {
                     if (colunas > ((numeroParaLinhas) / 2) + linhas)
                         break;// logica para evitar escrever mais espaçoes do que necessario
-                    if (colunas == ((numeroParaLinhas)/2) - linhas || colunas == ((numeroParaLinhas)/2) + linhas)
-                       //valores minimos || e maxmio da cada linha
-                        {
-                            Console.Write($"{(char) (65+linhas)}");// descobrir a letra e imprimir
-                        }
-                    else
+                    if (colunas == ((numeroParaLinhas) / 2) - linhas || colunas == ((numeroParaLinhas) / 2) -1  + linhas  )
+                    //valores minimos || e maxmio da cada linha
+                    {
+                        Console.Write($"{(char)(65 + linhas)}");// descobrir a letra e imprimir
+                    }
                         Console.Write(" ");
+                    
                     }
                     Console.WriteLine();
                 }
             #endregion
-            #region Parte de baixo
-            for (int i = 1; i <= numeroParaLinhas; i++)
-            {
-                for (int z = -(numeroParaLinhas + 1)/2; z <= numeroParaLinhas+(numeroParaLinhas - i); z++)
-                // na parte de baixo muda a logica de ate onde as colunas vão
-                //aqui tem se que o maior maximo (descoberto por testes com a letra Z) e: numeroParaLinhas+(numeroParaLinhas - i)
-                {
-                    if (z > ((numeroParaLinhas) / 2) + (numeroParaLinhas - i))
-                        break; // logica para evitar escrever mais espaçoes do que necessario
-                    if (z == ((numeroParaLinhas) / 2) - (numeroParaLinhas-i) || z == ((numeroParaLinhas) / 2) + (numeroParaLinhas-i))
-                   // logica para descobrir o minimo e maximo de cada linha
-                    {
-                        Console.Write($"{(char)(numeroParaALetra - i)}"); // descobrir a letra e imprimr
-                    }
 
-                    else
+
+
+            #region Parte de baixo
+            for (int linhas = 1; linhas <= numeroParaLinhas; linhas++)
+            {
+                for (int colunas = -(numeroParaLinhas + 1)/2; colunas <= numeroParaLinhas+(numeroParaLinhas - linhas); colunas++)
+                // na parte de baixo muda a logica de ate onde as colunas vão
+                //aqui tem se que o maior maximo (descoberto por testes com a letra Z) e: numeroParaLinhas+(numeroParaLinhas - i - 1)
+                {
+                    if (colunas > ((numeroParaLinhas) / 2) + (numeroParaLinhas - linhas))
+                        break; // logica para evitar escrever mais espaçoes do que necessario
+                    if (colunas == ((numeroParaLinhas) / 2) - (numeroParaLinhas - linhas) || colunas == ((numeroParaLinhas) / 2) + (numeroParaLinhas - linhas - 1))
+                    // logica para descobrir o minimo e maximo de cada linha
+                    {
+                        Console.Write($"{(char)(numeroParaALetra - linhas)}"); // descobrir a letra e imprimr
+                    }
+                   
                         Console.Write(" ");
+
+                    #region gambiarra para arrumar a ultima linha
+                    if ( linhas == numeroParaLinhas)
+                    {
+                        for (int colunas2 = -(numeroParaLinhas + 1) / 2; colunas2 <= numeroParaLinhas + (numeroParaLinhas - linhas); colunas2++)
+                        {
+                            if (colunas2 == numeroParaLinhas / 2 -1 )
+                                Console.Write($"{(char)(65)}");
+                            else
+                                Console.Write(" ");
+                        }
+                        break;
+                    }
+                    #endregion
                 }
                 Console.WriteLine();
             }
