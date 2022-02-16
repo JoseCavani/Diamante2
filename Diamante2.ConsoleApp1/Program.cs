@@ -28,7 +28,7 @@ namespace Diamante.ConsoleApp1
             Console.WriteLine();
 
             #region gambiarra para arrumar a primeira linha
-            for (int colunas = -(numeroParaLinhas + 1) / 2; colunas <= numeroParaLinhas; colunas++)// fazer colunas
+            for (int colunas = -(numeroParaLinhas + 1) / 2; colunas <= numeroParaLinhas/2; colunas++)// fazer colunas
             {
                 if (colunas == numeroParaLinhas / 2)
                 Console.Write($"{(char)(65)}");
@@ -64,7 +64,7 @@ namespace Diamante.ConsoleApp1
 
 
             #region Parte de baixo
-            for (int linhas = 1; linhas <= numeroParaLinhas; linhas++)
+            for (int linhas = 1; linhas < numeroParaLinhas; linhas++)
             {
                 for (int colunas = -(numeroParaLinhas + 1)/2; colunas <= numeroParaLinhas+(numeroParaLinhas - linhas); colunas++)
                 // na parte de baixo muda a logica de ate onde as colunas vão
@@ -80,21 +80,18 @@ namespace Diamante.ConsoleApp1
                    
                         Console.Write(" ");
 
-                    #region gambiarra para arrumar a ultima linha
-                    if ( linhas == numeroParaLinhas)
-                    {
-                        for (int colunas2 = -(numeroParaLinhas + 1) / 2; colunas2 <= numeroParaLinhas + (numeroParaLinhas - linhas); colunas2++)
-                        {
-                            if (colunas2 == numeroParaLinhas / 2 -1 )
-                                Console.Write($"{(char)(65)}");
-                            else
-                                Console.Write(" ");
-                        }
-                        break;
-                    }
-                    #endregion
+                   
                 }
                 Console.WriteLine();
+            }
+            #endregion
+            #region gambiarra para arrumar ultima linha
+            for (int colunas = -(numeroParaLinhas + 1) / 2; colunas <= numeroParaLinhas/2; colunas++)// fazer colunas
+            {
+                if (colunas == numeroParaLinhas / 2)
+                    Console.Write($"{(char)(65)}");
+                else
+                    Console.Write(" ");
             }
             #endregion
             Console.ReadKey();
